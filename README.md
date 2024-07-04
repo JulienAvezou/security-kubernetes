@@ -21,3 +21,8 @@ Sec best practices:
 -  Secure etcd store (stores secrets and config data from updates) - put etcd behind firewall, encrypt etcd data
 -  Protect your application data - automated backup and restore
 -  Configure Security Policies - Policy as Code to avoid misconfigurations by automating the validation of security config via 3rd party tools (Open Policy Agent, Kyverno etc.)
+
+-----
+
+# Demo
+1. Provision EKS cluster
