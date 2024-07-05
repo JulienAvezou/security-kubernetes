@@ -1,5 +1,6 @@
 # security-kubernetes
-Notes from DevSecOps ch.12 Security in Kubernetes
+Notes from DevSecOps ch.12 onwards for Security topics in Kubernetes
+
 
 Important to secure infra same way in Cloud as you would on-premise
 
@@ -24,7 +25,7 @@ Sec best practices:
 
 -----
 
-# Demo
+### Demo/ setting up EKS cluster
 1. Provision EKS cluster
 - terraform init
 <img width="602" alt="Capture d’écran 2024-07-04 à 21 08 42" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e5690d7d-8b64-4c74-a6ae-3b708a14ab2f">
@@ -49,3 +50,38 @@ get current user info logged in with: aws sts get-caller-identity
 
 improve security by upgrading version
 <img width="228" alt="Capture d’écran 2024-07-04 à 21 31 41" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/3a993b4e-624b-43fd-b2c1-349fbd6491c4">
+
+-----
+
+## Access management in K8s
+
+Least privilege rule
+
+Authentication + Authorization layers of security in K8s
+
+Restrict access to devs by namespace - RBAC (Role Based Access Control)
+-> RBAC makes use of Role component bound to namespace with specific permissions
+-> to attach User or Group to Role usd RoleBinding component
+-> for admins doing cluster wide ops, can use ClusterRole & ClusterRoleBinding
+-> K8s doesn't manage human users natively, so can use certificates or static token file or 3rd party (ie. LDAP) to manage users via API Server for authentication
+-> For application users (non human) - ServiceAccount component to represent user and then use same Role, RoleBinding, ClusterRole, ClusterRoleBinding
+
+checking API access: auth can-i subcommand
+
+For Managed K8s (ie. EKS via mapping AWS IAM users & roles to K8s roles) these config can be abstracted 
+How does this mapping work?
+- everything goes through release pipeline and shouldn`t be modifiable outside of the release process
+- admins only have READ ONLY access via ClusterRole
+- devs have Role with limited access to namespace with READ ONLY permission
+
+### Demo/ configure K8s access in terraform
+1. create aws-auth ConfigMap - connector between AWS resources & K8s components
+![Capture d’écran 2024-07-05 à 17 47 33](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/97083947-e41b-4b46-b2cb-8c3833ce5ffe)
+
+3. configure aws IAM roles
+![Capture d’écran 2024-07-05 à 18 14 07](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/3f10f5b3-0d32-4815-a344-c5f4433fb248)
+![Capture d’écran 2024-07-05 à 18 14 15](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/43eb9b40-6a95-4ccf-9a34-fa332bdd3e37)
+
+5. configure mapping between AWS roles & k8s roles
+![Capture d’écran 2024-07-05 à 18 14 22](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e7f1eba2-3cb4-421d-aef8-8175020387a9)
+
