@@ -78,10 +78,28 @@ How does this mapping work?
 1. create aws-auth ConfigMap - connector between AWS resources & K8s components
 ![Capture d’écran 2024-07-05 à 17 47 33](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/97083947-e41b-4b46-b2cb-8c3833ce5ffe)
 
-3. configure aws IAM roles
+2. configure aws IAM roles
 ![Capture d’écran 2024-07-05 à 18 14 07](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/3f10f5b3-0d32-4815-a344-c5f4433fb248)
 ![Capture d’écran 2024-07-05 à 18 14 15](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/43eb9b40-6a95-4ccf-9a34-fa332bdd3e37)
 
-5. configure mapping between AWS roles & k8s roles
+3. configure mapping between AWS roles & k8s roles
 ![Capture d’écran 2024-07-05 à 18 14 22](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e7f1eba2-3cb4-421d-aef8-8175020387a9)
 
+4. Create AWS users and set arn in tfvars
+![Capture d’écran 2024-07-05 à 19 58 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/19b3843d-0890-494d-a878-85615516a381)
+![Capture d’écran 2024-07-05 à 20 03 12](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/7bfeb56e-e1e6-4a0a-bcdd-004b1b71bf38)
+
+5. Create k8s Role, RoleBinding, ClusterRole, ClusterRoleBinding resources
+- setup kubernetes provider
+![Capture d’écran 2024-07-05 à 20 07 57](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ec7e6557-3fa0-462f-9abb-b36ff0a57dfa)
+
+- connect to eks cluster with kubernetes provider (needs aws cli installed locally + aws user to execute the cmd)
+![Capture d’écran 2024-07-05 à 20 12 34](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/59321da9-559c-4c2b-9eb1-7ef5d430353f)
+
+- configure k8s namespace
+![Capture d’écran 2024-07-05 à 20 28 03](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/2dfe9c90-9685-4b27-8647-6017a18f7200)
+
+- configure k8s Role
+![Capture d’écran 2024-07-05 à 20 28 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/c7034b70-4542-439e-82e1-22f6d37041c1)
+
+- configure k8s RoleBinding
