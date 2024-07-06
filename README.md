@@ -107,3 +107,27 @@ How does this mapping work?
 
 - configure k8s ClusterRole & ClusterRoleBinding
 ![Capture d’écran 2024-07-06 à 11 22 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/7ce6e70a-3492-4431-927c-8e15ac31c200)
+
+6. Provision resources with tf + check that resources are provisioned + test access
+![Capture d’écran 2024-07-06 à 15 35 38](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/f0b0d7cb-224a-47fb-ad92-f0d89306ec90)
+![Capture d’écran 2024-07-06 à 15 37 55](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e1416a38-c8aa-422f-910c-f5e77b36dc66)
+![Capture d’écran 2024-07-06 à 15 38 56](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ef2cf2a6-e78c-48a3-b298-92672646bd20)
+- test permissions with k8-admin user, while not having assumed the role to read access for Kubernetes resources
+  aws sts get-caller-identity:
+![Capture d’écran 2024-07-06 à 15 48 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e0b6c9db-dc37-4d9c-a9cd-1c333b3c47ad)
+![Capture d’écran 2024-07-06 à 15 49 32](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/eece26d2-87cb-4819-9f3f-7609ed03c7d8)
+  then assume the role with that user:
+![Capture d’écran 2024-07-06 à 16 36 38](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/42fc56ad-900b-45c7-8f1c-49b4ea229d84)
+![Capture d’écran 2024-07-06 à 16 06 10](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ddddc163-a3fa-4034-9273-6af15b734a6c)
+![Capture d’écran 2024-07-06 à 16 06 25](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/69324c1f-2a08-415f-89dc-ad4b0b0ba116)
+- test permissions with k8-developer user, while not having assumed the role to read access for Kubernetes resources
+![Capture d’écran 2024-07-06 à 16 48 19](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ed759318-e6c5-416a-bb4d-0739518ad2f0)
+![Capture d’écran 2024-07-06 à 16 48 08](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e4f93562-999a-487c-be45-6803728a729b)
+then assume the role with that user:
+![Capture d’écran 2024-07-06 à 16 50 18](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/440e8040-0bfa-4457-b025-153915829251)
+![Capture d’écran 2024-07-06 à 16 49 45](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/80d09f73-a626-4907-bd3e-c1e5f68925e7)
+![Capture d’écran 2024-07-06 à 16 52 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5dc7465a-da46-47a8-a8dc-028979587743)
+![Capture d’écran 2024-07-06 à 16 50 48](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/fafc89a5-8588-4c21-a247-e14b2d299f1f)
+
+
+
