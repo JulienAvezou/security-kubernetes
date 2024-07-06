@@ -1,6 +1,7 @@
 # security-kubernetes
 Notes from DevSecOps ch.12 onwards for Security topics in Kubernetes
 
+## Concepts
 
 Important to secure infra same way in Cloud as you would on-premise
 
@@ -129,5 +130,26 @@ then assume the role with that user:
 ![Capture d’écran 2024-07-06 à 16 52 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5dc7465a-da46-47a8-a8dc-028979587743)
 ![Capture d’écran 2024-07-06 à 16 50 48](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/fafc89a5-8588-4c21-a247-e14b2d299f1f)
 
+-----
 
+## Secure IaC Pipeline for EKS provisioning
+SSM limited to only certain aws resources (ie. EC2, RDS), and also needed to run on EC2 instance using Gitlab runner
+-> more secure and generic approach = AWS STS (Security Token Service)
 
+Set up a Trust Policy between AWS & external entity, in this case Gitlab, using Gitlab OIDC (OpenID Connect)
+Create a Role that makes use of this web trust policy (AssumeRoleWithWebIdentity), and store this role in Gitlab variables for referencing in the pipeline
+
+![Capture d’écran 2024-07-06 à 18 22 22](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/185c398d-a998-4b3a-b581-3d6e0aea0bfc)
+![Capture d’écran 2024-07-06 à 18 24 02](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/fb5422c9-f3cc-41a6-9f40-2221326f8abe)
+![Capture d’écran 2024-07-06 à 18 25 10](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5a71c8e6-e4a7-4b7c-8022-70f23f994e57)
+![Capture d’écran 2024-07-06 à 18 28 01](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/46251337-ff26-4543-a8c8-74a780106a84)
+
+Gitlab makes request to AWS by sending a OIDC token that will be verified by AWS using the Role setup with web identity (ie. proving that Gitlab is the principal that should be trusted by AWS to assume that Role)
+![Capture d’écran 2024-07-06 à 19 17 22](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/080b9c44-29de-4600-8c14-b3e16ecfbfbf)
+![Capture d’écran 2024-07-06 à 19 25 39](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/13bfafb5-3bdb-4532-bdc9-c8b42d74c543)
+
+To summarise the workflow above in steps:
+1. Configure GitLab Identity Provider on AWS
+2. Configure Trustpolicy for IAM Role
+3. Configure ID token generation in GitLab CI job
+4. Configure ROle Assumption in CI job
