@@ -89,7 +89,7 @@ How does this mapping work?
 ![Capture d’écran 2024-07-05 à 19 58 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/19b3843d-0890-494d-a878-85615516a381)
 ![Capture d’écran 2024-07-05 à 20 03 12](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/7bfeb56e-e1e6-4a0a-bcdd-004b1b71bf38)
 
-5. Create k8s Role, RoleBinding, ClusterRole, ClusterRoleBinding resources
+5. Setup k8s resources
 - setup kubernetes provider
 ![Capture d’écran 2024-07-05 à 20 07 57](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ec7e6557-3fa0-462f-9abb-b36ff0a57dfa)
 
@@ -103,3 +103,7 @@ How does this mapping work?
 ![Capture d’écran 2024-07-05 à 20 28 09](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/c7034b70-4542-439e-82e1-22f6d37041c1)
 
 - configure k8s RoleBinding
+![Capture d’écran 2024-07-06 à 11 18 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5f14d9bc-b7fe-4622-8c5c-4993b50f8d26)
+
+- configure k8s ClusterRole & ClusterRoleBinding
+![Capture d’écran 2024-07-06 à 11 22 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/7ce6e70a-3492-4431-927c-8e15ac31c200)
