@@ -171,3 +171,17 @@ To summarise the workflow above in steps:
 ------
 
 ## EKS Blueprints
+Some examples of add-ons via EKS Blueprints: auto scaling; metrics server, load balancer controller
+![Capture d’écran 2024-07-07 à 16 47 02](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/567b591c-b967-472f-ba7c-1d1b53e5f5aa)
+
+Add-ons use Helm in background:
+- need to define Helm provider in terraform and authenticate
+![Capture d’écran 2024-07-07 à 16 55 45](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/6e0f8737-a92c-43b9-a66b-2e2b914794f1)
+
+For troubleshooting:
+1. Find original Helm Chart, EKS Blueprints are using
+2. In Helm Chart, search in values.yaml for config options
+3. Override default config inside EKS Blueprint terraform module
+![Capture d’écran 2024-07-07 à 17 24 40](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/f2acc359-a586-4a7a-9eb0-f7b66a97107c)
+
+
