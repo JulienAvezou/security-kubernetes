@@ -152,4 +152,22 @@ To summarise the workflow above in steps:
 1. Configure GitLab Identity Provider on AWS
 2. Configure Trustpolicy for IAM Role
 3. Configure ID token generation in GitLab CI job
-4. Configure ROle Assumption in CI job
+4. Configure Role Assumption in CI job
+
+5. Configure remote terraform state
+![Capture d’écran 2024-07-07 à 15 36 58](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/07cbbed5-1e1d-4893-859d-0b1610064887)
+![Capture d’écran 2024-07-07 à 15 38 34](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5cdaaa1f-66a9-4866-9bc7-653f4b28e8d0)
+
+6. Add terraform config to pipeline
+![Capture d’écran 2024-07-07 à 15 58 51](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e6a22230-288a-4182-9913-6c957bd33d88)
+![Capture d’écran 2024-07-07 à 15 58 46](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/8255a1cc-8cc0-4b5e-a271-019879021c21)
+![Capture d’écran 2024-07-07 à 15 57 37](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5b644c9b-e5d2-441a-920c-ad6bccb940f0)
+![Capture d’écran 2024-07-07 à 15 58 01](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/1e9d8daf-6fbf-4843-99d2-3ac86d15e497)
+![Capture d’écran 2024-07-07 à 15 59 49](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/1f13a0c2-5668-4794-92bf-8e1c3b5bdb7f)
+![Capture d’écran 2024-07-07 à 16 00 14](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5d51c26d-32e6-468b-ad71-9d77067fb345)
+![Capture d’écran 2024-07-07 à 16 14 15](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/1cbb38d8-f072-4fcb-addc-747c429edfd1)
+![Capture d’écran 2024-07-07 à 16 14 33](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e4564085-8402-4044-b108-e3c781d998f8)
+
+------
+
+## EKS Blueprints
