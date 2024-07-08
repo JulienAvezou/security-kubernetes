@@ -13,16 +13,16 @@ K8s security in layers:
 Security should be redundant to increase security at every step 
 
 Sec best practices:
-- build secure images (see docker security best practices section for image sec)
-- do image scanning before pushing to registry + scan regularly in registry
-- run container as non-root
+- Build secure images (see docker security best practices section for image sec)
+- Do image scanning before pushing to registry + scan regularly in registry
+- Run container as non-root
 - RBAC (Role Based Access Control) - authentication & authorization at cluster level and within the cluster, keep permissions as restrictive as possible mapped to namespaces. NB: users need to be created via certificates within context of K8s. For non-human users - ServiceAccount resource which uses tokens
 - Defined network rules at network level (NetworkPolicy) or at service level via Service Mesh using proxies (with Istio for ex) to determine how pods can talk to each other - least access allowed rules
 - mTLS between Services for encryption
 - Secure Secret Data using Secret resource - enable built-in encryption using EncryptionConfiguration with AWS KMS to manage the encryption keys or 3rd party solution like HashiCorp Vault
--  Secure etcd store (stores secrets and config data from updates) - put etcd behind firewall, encrypt etcd data
--  Protect your application data - automated backup and restore
--  Configure Security Policies - Policy as Code to avoid misconfigurations by automating the validation of security config via 3rd party tools (Open Policy Agent, Kyverno etc.)
+- Secure etcd store (stores secrets and config data from updates) - put etcd behind firewall, encrypt etcd data
+- Protect your application data - automated backup and restore
+- Configure Security Policies - Policy as Code to avoid misconfigurations by automating the validation of security config via 3rd party tools (Open Policy Agent, Kyverno etc.)
 
 -----
 
@@ -184,4 +184,26 @@ For troubleshooting:
 3. Override default config inside EKS Blueprint terraform module
 ![Capture d’écran 2024-07-07 à 17 24 40](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/f2acc359-a586-4a7a-9eb0-f7b66a97107c)
 
+------
 
+## ArgoCD
+
+ArgoCD -> gitops continuous delivery tool used for Kubernetes
+pull-based: 
+1. Deploy ArgoCD in K8s cluster
+2. Configure ArgoCD to track git repo
+3. ArgoCD monitors for any changes & applies automatically
+
+Unlike Jenkins or other CI/CD tools:
+- no need to install and setup tools, like kubectl
+- no need to configure access to K8s and cloud platforms (like AWS)
+- no visibility of deployment status
+
+best practice to have separate git repo for app source doe & app configuration to avoid triggering full CI pipeline if only app configuration changes (ie. K8s manifest file) but not app source code
+
+ArgoCD supports:
+- K8s YAML files
+- Helm charts
+- Kustomize
+
+Splitting CI & CD thanks to ArgoCD
