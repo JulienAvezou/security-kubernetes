@@ -207,3 +207,14 @@ ArgoCD supports:
 - Kustomize
 
 Splitting CI & CD thanks to ArgoCD
+
+Benefits of using ArgoCD setup based on GitOps principles:
+- git as single source of truth: ArgoCD will always try to sync with the desired state in the git repo containing the app configuration (can also configure to not sync automatically and alert on manual changes)
+- versioning via change history
+- easy rollback
+- cluster disaster recovery
+- K8s access control using git repo
+- No need to give external access to K8s cluster (like Jenkins)
+- ArgoCD uses existing K8s functionalities (like using etcd for storage), improving visibility in the cluster
+- Same ArgoCD instance can be used to sync a fleet of K8s clusters distributed across regions for the same environment
+- For different environments can use overlays with kustomize 
