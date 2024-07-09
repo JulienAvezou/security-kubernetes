@@ -218,3 +218,22 @@ Benefits of using ArgoCD setup based on GitOps principles:
 - ArgoCD uses existing K8s functionalities (like using etcd for storage), improving visibility in the cluster
 - Same ArgoCD instance can be used to sync a fleet of K8s clusters distributed across regions for the same environment
 - For different environments can use overlays with kustomize 
+
+### Demo
+1. Deploy Argo CD in K8s cluster
+- configure Argo CD via helm chart instance
+![Capture d’écran 2024-07-09 à 15 41 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/22231ff6-9e87-455b-869e-c3c0d36de31f)
+
+- configure K8s secret to connect Argo CD to git repo
+![Capture d’écran 2024-07-09 à 15 41 44](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e305cda5-9ee0-480e-9b0a-e344ccff1057)
+![Capture d’écran 2024-07-09 à 15 42 05](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/d6564889-3b08-4e32-942a-f5efc314d248)
+
+- give way for admin to access CLuster via port forwarding
+![Capture d’écran 2024-07-09 à 15 42 14](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/7948b03c-9123-43d1-bdbc-ba3bac0d702b)
+
+- configure CRD resource for Argo CD application
+![Capture d’écran 2024-07-09 à 15 42 31](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/9650a3ac-a6ab-4ffe-abc6-9ec962990a18)
+
+3. Connect Argo to Gitops repo
+4. Write K8s manifest files
+5. Argo deploys application in cluster
