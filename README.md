@@ -246,6 +246,19 @@ Pre-step:
 - generate developer token from gitops repo and save credentials in settings of infra repo as variables + also the url of the gitops repo
 ![Capture d’écran 2024-07-09 à 17 05 26](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/af5314b6-395e-4b89-9ada-696c2579415d)
 
+- run pipeline that deploys Argo CD
+
+- once pipeline has run successfully, check that Argo CD Application is deployed and running
+  assume role with admin user
+  connect to cluster with kubectl
+![Capture d’écran 2024-07-09 à 18 35 26](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/1d3fd185-c100-4051-ad57-26c916f31caa)
+  portforward with kubectl to connect to Argo CD UI on localhost
+![Capture d’écran 2024-07-09 à 18 58 38](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/d0ed75f0-70f9-426a-8d7d-3f96a7f6ea60)
+ get secret to login to Argo CD UI
+![Capture d’écran 2024-07-09 à 18 49 46](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e9f950bc-5634-4020-94fb-52138958333e)
+login to Argo CD UI
+![Capture d’écran 2024-07-09 à 18 53 49](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/398e09f1-bed7-4a81-840e-c1eb42ee6e72)
+
 3. Write K8s manifest files
 
 4. Argo deploys application in cluster
