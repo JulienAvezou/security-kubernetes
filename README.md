@@ -220,6 +220,10 @@ Benefits of using ArgoCD setup based on GitOps principles:
 - For different environments can use overlays with kustomize 
 
 ### Demo
+Pre-step:
+- create new repo in Gitlab + setup empty folder structure overlays/dev
+![Capture d’écran 2024-07-09 à 17 07 01](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/4ca16252-1829-485c-8cf3-24cf4686eeb0)
+
 1. Deploy Argo CD in K8s cluster
 - configure Argo CD via helm chart instance
 ![Capture d’écran 2024-07-09 à 15 41 36](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/22231ff6-9e87-455b-869e-c3c0d36de31f)
@@ -234,6 +238,14 @@ Benefits of using ArgoCD setup based on GitOps principles:
 - configure CRD resource for Argo CD application
 ![Capture d’écran 2024-07-09 à 15 42 31](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/9650a3ac-a6ab-4ffe-abc6-9ec962990a18)
 
-3. Connect Argo to Gitops repo
-4. Write K8s manifest files
-5. Argo deploys application in cluster
+- add stage in pipeline to deploy the Argo CD application
+![Capture d’écran 2024-07-09 à 17 05 53](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/42b6e535-97f6-4e56-9a31-50b339b043ed)
+
+
+2. Connect Argo to Gitops repo
+- generate developer token from gitops repo and save credentials in settings of infra repo as variables + also the url of the gitops repo
+![Capture d’écran 2024-07-09 à 17 05 26](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/af5314b6-395e-4b89-9ada-696c2579415d)
+
+3. Write K8s manifest files
+
+4. Argo deploys application in cluster
