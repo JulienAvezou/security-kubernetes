@@ -256,9 +256,37 @@ Pre-step:
 ![Capture d’écran 2024-07-09 à 18 58 38](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/d0ed75f0-70f9-426a-8d7d-3f96a7f6ea60)
  get secret to login to Argo CD UI
 ![Capture d’écran 2024-07-09 à 18 49 46](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e9f950bc-5634-4020-94fb-52138958333e)
-login to Argo CD UI
-![Capture d’écran 2024-07-09 à 18 53 49](https://github.com/JulienAvezou/security-kubernetes/assets/62488871/398e09f1-bed7-4a81-840e-c1eb42ee6e72)
+login to Argo CD UI and check state & connection to the gitops repo
+<img width="1049" alt="Capture d’écran 2024-07-11 à 19 33 55" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/cb2a5b4e-60d2-47a1-a63a-a1c6e0d67db5">
+<img width="1020" alt="Capture d’écran 2024-07-11 à 19 33 36" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/f584dabc-bfa7-4bdd-8da2-27cadd4dae43">
+<img width="585" alt="Capture d’écran 2024-07-11 à 19 33 17" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/67720471-2d3c-4ab8-8ed5-7802ce7cb44c">
 
 3. Write K8s manifest files
+make use of Kustomize to define base and then add overlays on top of manifest -> ie. similar apps across multiple environments
+<img width="831" alt="Capture d’écran 2024-07-11 à 20 09 05" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5d5041c4-f3af-4c4f-aa9c-b00ca6a650e3">
 
-4. Argo deploys application in cluster
+need one kustomization file per folder wherever used
+<img width="389" alt="Capture d’écran 2024-07-11 à 19 56 40" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/c942d552-b192-41cd-8f46-92b3961188bc">
+<img width="707" alt="Capture d’écran 2024-07-11 à 19 59 45" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/bd63321f-fd72-4aa9-9458-5efc88a4361c">
+
+also allows to dynamically customise variables such as image names and tags
+<img width="596" alt="Capture d’écran 2024-07-11 à 20 05 25" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/757161dd-464d-499c-bf54-5fadd1d58dff">
+
+create gitops pipeline to increment version of manifest files via centralized kustomize file using yq tool to update YAML files, this will trigger a deployment automatically only if trigger by another pipeline:
+<img width="1167" alt="Capture d’écran 2024-07-11 à 21 47 35" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/2b34b1da-61f2-469a-9b7d-ddfd3c05ea7c">
+For security, every repo should have its own credentials for access (create access token per project)
+
+create the CI pipeline that triggers the gitops pipeline:
+<img width="689" alt="Capture d’écran 2024-07-11 à 22 20 56" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/d84c9924-3ab7-465c-8000-4de82751603f">
+
+5. Argo deploys application in cluster
+<img width="831" alt="Capture d’écran 2024-07-11 à 20 09 05" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/232008a9-b4fe-41e1-9ec5-9b96ac787ddb">
+<img width="1136" alt="Capture d’écran 2024-07-11 à 20 09 42" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/ec88f9f1-cea2-4dcf-8966-d848b15ea69e">
+<img width="1069" alt="Capture d’écran 2024-07-11 à 20 09 55" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/e6b2ced8-4997-46b9-bf45-30c0633e097c">
+<img width="1371" alt="Capture d’écran 2024-07-11 à 20 27 03" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5f43bc01-55ea-45a5-900f-1141fad87d59">
+
+Final E2E CI/CD flow:
+<img width="1005" alt="Capture d’écran 2024-07-11 à 22 24 05" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/972d2075-ad68-4434-8381-a8c1d1bb8196">
+<img width="745" alt="Capture d’écran 2024-07-11 à 22 24 18" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/fcbb1d6e-1a20-4d48-8edf-9bad9bbab96c">
+<img width="351" alt="Capture d’écran 2024-07-11 à 22 24 45" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5d1feb0a-26e8-4617-8ff7-3e0e0f62896e">
+<img width="992" alt="Capture d’écran 2024-07-11 à 22 26 01" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/24bfe75f-bf60-4df3-b834-226f36a4e94c">
