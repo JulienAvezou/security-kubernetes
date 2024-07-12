@@ -310,4 +310,7 @@ How Gatekeeper works?
 1. install Gatekeeper in K8s cluster within infra gitops repo
 <img width="666" alt="Capture d’écran 2024-07-12 à 17 27 14" src="https://github.com/user-attachments/assets/3d02e5a1-7c23-4f62-a3cd-71b1439dd0f3">
 
-2. create Constraint Template & Constraint in gitops repo
+2. create Constraint Templates & Constraints in gitops repo -> separate infra from policies
+
+can find pre-defined templates in Gatekeeper library
+<img width="896" alt="Capture d’écran 2024-07-12 à 18 14 29" src="https://github.com/user-attachments/assets/9d6319ed-9e9e-44c0-a75b-e55b11d26d9e">
