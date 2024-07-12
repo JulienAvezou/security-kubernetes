@@ -290,3 +290,24 @@ Final E2E CI/CD flow:
 <img width="745" alt="Capture d’écran 2024-07-11 à 22 24 18" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/fcbb1d6e-1a20-4d48-8edf-9bad9bbab96c">
 <img width="351" alt="Capture d’écran 2024-07-11 à 22 24 45" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5d1feb0a-26e8-4617-8ff7-3e0e0f62896e">
 <img width="992" alt="Capture d’écran 2024-07-11 à 22 26 01" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/24bfe75f-bf60-4df3-b834-226f36a4e94c">
+
+------
+
+## Policy as Code
+
+- validate manifests before deployment based on policies set by an organisation to enforce best practices on top of RBAC
+- implemented by Open Policy Agent (OPA) or Gatekeeper, OPA is more general purpose & flexible, Gatekeeper is built on top of OPA for K8s specifically making it simpler to use
+- policy language is called Rego
+
+How Gatekeeper works?
+- controller manager & audit installed in K8s cluster
+- on each API request to CRUD K8s resource in cluster, an admission validation webhook is triggered with Gatekeeper
+- Gatekeeper applies several CRD in K8s cluster including: Constraint Template (sets the desired state) CRD & Constraint (objects of desired state) CRD
+- can use Gatekeeper library to find pre-defined Constraint Templates
+
+### Demo
+
+1. install Gatekeeper in K8s cluster within infra gitops repo
+<img width="666" alt="Capture d’écran 2024-07-12 à 17 27 14" src="https://github.com/user-attachments/assets/3d02e5a1-7c23-4f62-a3cd-71b1439dd0f3">
+
+2. create Constraint Template & Constraint in gitops repo
