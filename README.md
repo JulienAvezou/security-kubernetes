@@ -314,3 +314,14 @@ How Gatekeeper works?
 
 can find pre-defined templates in Gatekeeper library
 <img width="896" alt="Capture d’écran 2024-07-12 à 18 14 29" src="https://github.com/user-attachments/assets/9d6319ed-9e9e-44c0-a75b-e55b11d26d9e">
+
+<img width="996" alt="Capture d’écran 2024-07-13 à 11 32 31" src="https://github.com/user-attachments/assets/e1e0d08f-e53d-4967-8256-4af7d4a7e634">
+
+<img width="623" alt="Capture d’écran 2024-07-13 à 11 41 45" src="https://github.com/user-attachments/assets/669d38c6-e21d-4fc0-8d5c-2e3abcaddc7d">
+<img width="698" alt="Capture d’écran 2024-07-13 à 11 41 37" src="https://github.com/user-attachments/assets/e1508234-1545-490f-a6bc-83a242fe7292">
+
+3. Create Argo CD application to deploy the OPA resources
+![Capture d’écran 2024-07-13 à 11 59 00](https://github.com/user-attachments/assets/9cbe7d25-38dd-4212-b03c-bd5c9c48388d)
+![Capture d’écran 2024-07-13 à 11 59 08](https://github.com/user-attachments/assets/bc19e777-1305-41df-bb74-2814b07d4ae3)
+
+NB: you should deploy the Constraint Template before deploying the Constraint, to avoid race conditions
