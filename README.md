@@ -325,3 +325,7 @@ can find pre-defined templates in Gatekeeper library
 ![Capture d’écran 2024-07-13 à 11 59 08](https://github.com/user-attachments/assets/bc19e777-1305-41df-bb74-2814b07d4ae3)
 
 NB: you should deploy the Constraint Template before deploying the Constraint, to avoid race conditions
+
+4. Try adding another policy constraint, such as prevent privileged containers from being deployed
+<img width="1250" alt="Capture d’écran 2024-07-13 à 12 40 02" src="https://github.com/user-attachments/assets/7f63b8c5-d707-4b39-a6bc-5d14e7a308c4">
+<img width="451" alt="Capture d’écran 2024-07-13 à 12 40 12" src="https://github.com/user-attachments/assets/dd96dbdc-a555-4773-a7a4-15f5ad65fc2e">
