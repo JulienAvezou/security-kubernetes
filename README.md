@@ -329,3 +329,33 @@ NB: you should deploy the Constraint Template before deploying the Constraint, t
 4. Try adding another policy constraint, such as prevent privileged containers from being deployed
 <img width="1250" alt="Capture d’écran 2024-07-13 à 12 40 02" src="https://github.com/user-attachments/assets/7f63b8c5-d707-4b39-a6bc-5d14e7a308c4">
 <img width="451" alt="Capture d’écran 2024-07-13 à 12 40 12" src="https://github.com/user-attachments/assets/dd96dbdc-a555-4773-a7a4-15f5ad65fc2e">
+
+------
+
+## Secrets management
+
+-> Secret Object K8s uses base64 which is not secure
+
+Alternatives:
+- could reference secret as env var from pipeline however CI/CD are not secret stores, increases risk of being exposed
+- store locally, however the local device can be compromised
+- **secrets manager is the best option**
+
+Secrets Manager providers:
+Hashicorp Vault, AWS Secrets Manager etc.
+- encrypted at rest & in transit
+- secrets centrally stored
+- fine-grained access control
+- audit & compliance - detailed logs of access
+
+Vault provides 2 specific features:
+- dynamic secrets with short expiration period, using a secrets engine for each tool under the hood in a storage backend via authentication methods (trusted 3rd party identities) using path routing - every client has own short lived token
+- encrypt as service
+
+AWS Secrets Manager uses KMS for encryption secrets & IAM for access control & auditing via CloudTrail
+
+AWS Secrets Manager doesn't require operational effort, unlike Vault 
+
+External Secrets Operator K8s component allows to connect to any external secrets manager, via following CRDs:
+- Cluster Secret Store - allows to connect with external secrets manager
+- External Secret - references external secret and creates native K8s secret
