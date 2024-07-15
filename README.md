@@ -359,3 +359,26 @@ AWS Secrets Manager doesn't require operational effort, unlike Vault
 External Secrets Operator K8s component allows to connect to any external secrets manager, via following CRDs:
 - Cluster Secret Store - allows to connect with external secrets manager
 - External Secret - references external secret and creates native K8s secret
+
+### Demo
+
+1. Install External Secrets Controller in EKS cluster
+![Capture d’écran 2024-07-15 à 15 46 13](https://github.com/user-attachments/assets/2fbecb13-8eb7-4790-b6da-c3e590bbabc5)
+
+2. Create secret in AWS Secrets Manager
+<img width="1326" alt="Capture d’écran 2024-07-15 à 15 51 04" src="https://github.com/user-attachments/assets/80d8b585-dcfe-44c7-9556-4ca3a59433cf">
+
+3. Create IAM role
+![Capture d’écran 2024-07-15 à 16 04 23](https://github.com/user-attachments/assets/36f97053-9232-49b9-9480-2c241fc20168)
+
+4. Create Service Account to map to IAM role
+![Capture d’écran 2024-07-15 à 16 07 55](https://github.com/user-attachments/assets/1eeb765b-940c-4d05-9538-551f1798758f)
+
+5. Create ClusterSecretStore in gitops manifest file
+<img width="667" alt="Capture d’écran 2024-07-15 à 16 28 45" src="https://github.com/user-attachments/assets/2c6578f0-2b88-41c4-9f10-3fa4405c0ad1">
+
+6. Create ExternalSecret in gitops manifest file
+<img width="376" alt="Capture d’écran 2024-07-15 à 16 52 42" src="https://github.com/user-attachments/assets/b7b24c8e-77bd-430b-ab16-c5fcb3fa61f2">
+
+7. Use secret in microservices app
+<img width="635" alt="Capture d’écran 2024-07-15 à 16 55 33" src="https://github.com/user-attachments/assets/cfad74be-ce27-4a4a-b1f2-ab9e619811b6">
