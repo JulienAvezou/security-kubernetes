@@ -382,3 +382,30 @@ External Secrets Operator K8s component allows to connect to any external secret
 
 7. Use secret in microservices app
 <img width="635" alt="Capture d’écran 2024-07-15 à 16 55 33" src="https://github.com/user-attachments/assets/cfad74be-ce27-4a4a-b1f2-ab9e619811b6">
+
+------
+
+## Service Mesh with Istio
+
+- Secure communications with E2E encryption
+- Authentication policies between pods
+- Gateway deployment
+
+Service Mesh w Sidecar Pattern:
+- handles networking logic
+- acts as proxy in each pod -> networking mesh layer between proxies
+- easy configuration
+- devs can focus on actual business logic
+- traffic splitting for testing apps (canary deployment)
+
+In Istio implementation:
+- Envoy proxy
+- Control plane: Istiod (made up of pilot, citadel, galley components)
+- proxes cqn work independently from the Control Plane
+- config separate from application configuration
+- uses K8s CRDs, so no need to learn Istio specific lang (VirtualService, DestinationRule CRDs)
+- new microservice get registered automatically in service registry
+- configure multiple things (ie. retry rules; comms rules etc.)
+- certificate management -> mTLS
+- Ingress Gateway
+- gathers telemetry data for monitoring, tracing
