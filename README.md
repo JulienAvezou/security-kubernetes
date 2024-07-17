@@ -425,4 +425,4 @@ In Istio implementation:
 ![Capture d’écran 2024-07-17 à 18 31 31](https://github.com/user-attachments/assets/0855a013-bd9b-4eed-9df6-7ac1f1c2b671)
 
 - allow sidecar traffic in pods
-![Capture d’écran 2024-07-17 à 18 31 48](https://github.com/user-attachments/assets/b3c825a0-f5bf-47c2-b871-82d541bb61f1)
+<img width="623" alt="Capture d’écran 2024-07-17 à 18 51 19" src="https://github.com/user-attachments/assets/55a67373-387c-4525-bf99-d9ec2fe5d5fe">
