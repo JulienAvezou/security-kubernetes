@@ -417,7 +417,7 @@ In Istio implementation:
 - install istiod, istio-base, istio-ingress charts
 ![Capture d’écran 2024-07-17 à 18 30 47](https://github.com/user-attachments/assets/f4f4818b-33f3-4ddb-939e-d8d33814f59d)
 
-- add security groups for istio-ingress
+- configure & add security groups for Istio Gateway
 ![Capture d’écran 2024-07-17 à 18 30 55](https://github.com/user-attachments/assets/a4f7fe77-e73e-4e36-9c02-d10396096ff5)
 ![Capture d’écran 2024-07-17 à 18 31 05](https://github.com/user-attachments/assets/baacca3b-e17c-4ab2-9416-54cd6b045e88)
 
