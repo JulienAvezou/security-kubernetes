@@ -401,13 +401,13 @@ Service Mesh w Sidecar Pattern:
 In Istio implementation:
 - Envoy proxy
 - Control plane: Istiod (made up of pilot, citadel, galley components)
-- proxes cqn work independently from the Control Plane
+- proxies can work independently from the Control Plane
 - config separate from application configuration
 - uses K8s CRDs, so no need to learn Istio specific lang (VirtualService, DestinationRule CRDs)
 - new microservice get registered automatically in service registry
 - configure multiple things (ie. retry rules; comms rules etc.)
 - certificate management -> mTLS
-- Ingress Gateway
+- Istio Gateway: entrypoint to mesh network, manages incoming traffic coming from outside the service mesh to the services within the mesh
 - gathers telemetry data for monitoring, tracing
 
 ### Demo
@@ -426,3 +426,10 @@ In Istio implementation:
 
 - allow sidecar traffic in pods
 <img width="623" alt="Capture d’écran 2024-07-17 à 18 51 19" src="https://github.com/user-attachments/assets/55a67373-387c-4525-bf99-d9ec2fe5d5fe">
+
+2. Configure Istio resources in application gitops repo
+
+- Gateway crd
+- VirtualService crd
+<img width="423" alt="Capture d’écran 2024-07-21 à 19 21 46" src="https://github.com/user-attachments/assets/1022f2f5-de7c-4ec6-9c32-ecd245baf5ae">
+<img width="409" alt="Capture d’écran 2024-07-21 à 19 22 04" src="https://github.com/user-attachments/assets/8b675ab4-8720-425b-a02a-aecaba7d3568">
