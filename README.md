@@ -410,11 +410,18 @@ In Istio implementation:
 - Istio Gateway: entrypoint to mesh network, manages incoming traffic coming from outside the service mesh to the services within the mesh
 - gathers telemetry data for monitoring, tracing
 
-mTLS note:
+mTLS:
 by default istio configures destination workloads using permissive mode (accept both plaintext & mutual TLS traffic)
 can define mode for mTLS via PeerAuthentication crd (permissive or strict) on different levels (namespace level, pod level or entire mesh)
 
 istioctl is cmd line tool to debug & diagnose istio mesh
+
+Authorization Policies allows or denies traffic from any source to any destination in the mesh:
+- by default, no limitations
+- can define rules of what API endponts of service can be accessed
+- only works for Pods that have Istio proxy inside
+NOTE: K8s also provides alternative to Authorization Policies: K8s Netowrk Policies which work on IP & Port level
+however Istio Authorization Policies is the recommended option as it operates on Layer 7 vs Layers 3 & 4 which allows for more sophisticated & fine-grained access control + supports mTLS 
 
 ### Demo
 
@@ -446,3 +453,10 @@ istioctl is cmd line tool to debug & diagnose istio mesh
 <img width="221" alt="Capture d’écran 2024-07-22 à 20 02 31" src="https://github.com/user-attachments/assets/e0cdeab9-bec1-4cdc-8c0e-2a9054f80f3e">
 <img width="378" alt="Capture d’écran 2024-07-22 à 20 31 54" src="https://github.com/user-attachments/assets/bcac9e46-ad08-4f0f-a301-666659a3f842">
 <img width="546" alt="Capture d’écran 2024-07-22 à 20 35 16" src="https://github.com/user-attachments/assets/ad9aca66-a74f-4e69-8e88-32812c4e5ec4">
+
+4. Configure Peer Authentication for mTLS enforcing
+<img width="407" alt="Capture d’écran 2024-07-23 à 18 32 58" src="https://github.com/user-attachments/assets/6b5b6e9f-8380-4824-8bb7-0d0974cad026">
+
+5. Configure Authorization Policies to deny traffic to frontend service + to deny traffic from one namespace to another
+<img width="391" alt="Capture d’écran 2024-07-23 à 19 08 59" src="https://github.com/user-attachments/assets/8b3e43f8-4063-443b-88bf-37509202d5af">
+<img width="545" alt="Capture d’écran 2024-07-23 à 19 21 09" src="https://github.com/user-attachments/assets/b3337e27-ec8a-4326-9901-4a3059011856">
