@@ -406,9 +406,15 @@ In Istio implementation:
 - uses K8s CRDs, so no need to learn Istio specific lang (VirtualService, DestinationRule CRDs)
 - new microservice get registered automatically in service registry
 - configure multiple things (ie. retry rules; comms rules etc.)
-- certificate management -> mTLS
+- certificate management -> mTLS out of the box with istio proxy
 - Istio Gateway: entrypoint to mesh network, manages incoming traffic coming from outside the service mesh to the services within the mesh
 - gathers telemetry data for monitoring, tracing
+
+mTLS note:
+by default istio configures destination workloads using permissive mode (accept both plaintext & mutual TLS traffic)
+can define mode for mTLS via PeerAuthentication crd (permissive or strict) on different levels (namespace level, pod level or entire mesh)
+
+istioctl is cmd line tool to debug & diagnose istio mesh
 
 ### Demo
 
@@ -433,3 +439,10 @@ In Istio implementation:
 - VirtualService crd
 <img width="423" alt="Capture d’écran 2024-07-21 à 19 21 46" src="https://github.com/user-attachments/assets/1022f2f5-de7c-4ec6-9c32-ecd245baf5ae">
 <img width="409" alt="Capture d’écran 2024-07-21 à 19 22 04" src="https://github.com/user-attachments/assets/8b675ab4-8720-425b-a02a-aecaba7d3568">
+
+3. Generate TLS certificate, store it in AWS Secrets Manager and use it to configure https on Gateway via ExternalSecrets
+
+<img width="913" alt="Capture d’écran 2024-07-22 à 20 48 30" src="https://github.com/user-attachments/assets/9f418299-6095-4769-85e4-38e812032c21">
+<img width="221" alt="Capture d’écran 2024-07-22 à 20 02 31" src="https://github.com/user-attachments/assets/e0cdeab9-bec1-4cdc-8c0e-2a9054f80f3e">
+<img width="378" alt="Capture d’écran 2024-07-22 à 20 31 54" src="https://github.com/user-attachments/assets/bcac9e46-ad08-4f0f-a301-666659a3f842">
+<img width="546" alt="Capture d’écran 2024-07-22 à 20 35 16" src="https://github.com/user-attachments/assets/ad9aca66-a74f-4e69-8e88-32812c4e5ec4">
