@@ -291,6 +291,8 @@ Final E2E CI/CD flow:
 <img width="351" alt="Capture d’écran 2024-07-11 à 22 24 45" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/5d1feb0a-26e8-4617-8ff7-3e0e0f62896e">
 <img width="992" alt="Capture d’écran 2024-07-11 à 22 26 01" src="https://github.com/JulienAvezou/security-kubernetes/assets/62488871/24bfe75f-bf60-4df3-b834-226f36a4e94c">
 
+<img width="1427" alt="Capture d’écran 2024-07-30 à 15 56 51" src="https://github.com/user-attachments/assets/b2bbae3c-3c59-450f-bd28-8d248ac1797e">
+
 ------
 
 ## Policy as Code
@@ -309,6 +311,8 @@ How Gatekeeper works?
 
 1. install Gatekeeper in K8s cluster within infra gitops repo
 <img width="666" alt="Capture d’écran 2024-07-12 à 17 27 14" src="https://github.com/user-attachments/assets/3d02e5a1-7c23-4f62-a3cd-71b1439dd0f3">
+<img width="853" alt="Capture d’écran 2024-07-30 à 16 05 31" src="https://github.com/user-attachments/assets/b00e2dba-ae4c-4732-a989-8b874da85744">
+<img width="818" alt="Capture d’écran 2024-07-30 à 16 06 26" src="https://github.com/user-attachments/assets/2a08c94f-f9cf-41d4-822d-9aa83ced7992">
 
 2. create Constraint Templates & Constraints in gitops repo -> separate infra from policies
 
@@ -325,6 +329,10 @@ can find pre-defined templates in Gatekeeper library
 ![Capture d’écran 2024-07-13 à 11 59 08](https://github.com/user-attachments/assets/bc19e777-1305-41df-bb74-2814b07d4ae3)
 
 NB: you should deploy the Constraint Template before deploying the Constraint, to avoid race conditions
+
+Test the policy by changing the service type to NodePort
+<img width="1092" alt="Capture d’écran 2024-07-30 à 16 35 08" src="https://github.com/user-attachments/assets/f80c7c20-efaf-4476-abc6-af2725da6d57">
+<img width="935" alt="Capture d’écran 2024-07-30 à 16 34 57" src="https://github.com/user-attachments/assets/0b6e8043-1e29-49d7-9b8e-51e468570d08">
 
 4. Try adding another policy constraint, such as prevent privileged containers from being deployed
 <img width="1250" alt="Capture d’écran 2024-07-13 à 12 40 02" src="https://github.com/user-attachments/assets/7f63b8c5-d707-4b39-a6bc-5d14e7a308c4">
@@ -365,23 +373,28 @@ External Secrets Operator K8s component allows to connect to any external secret
 1. Install External Secrets Controller in EKS cluster
 ![Capture d’écran 2024-07-15 à 15 46 13](https://github.com/user-attachments/assets/2fbecb13-8eb7-4790-b6da-c3e590bbabc5)
 
-2. Create secret in AWS Secrets Manager
+
+3. Create secret in AWS Secrets Manager
 <img width="1326" alt="Capture d’écran 2024-07-15 à 15 51 04" src="https://github.com/user-attachments/assets/80d8b585-dcfe-44c7-9556-4ca3a59433cf">
 
-3. Create IAM role
+4. Create IAM role
 ![Capture d’écran 2024-07-15 à 16 04 23](https://github.com/user-attachments/assets/36f97053-9232-49b9-9480-2c241fc20168)
 
-4. Create Service Account to map to IAM role
+5. Create Service Account to map to IAM role
 ![Capture d’écran 2024-07-15 à 16 07 55](https://github.com/user-attachments/assets/1eeb765b-940c-4d05-9538-551f1798758f)
 
-5. Create ClusterSecretStore in gitops manifest file
+6. Create ClusterSecretStore in gitops manifest file
 <img width="667" alt="Capture d’écran 2024-07-15 à 16 28 45" src="https://github.com/user-attachments/assets/2c6578f0-2b88-41c4-9f10-3fa4405c0ad1">
+<img width="585" alt="Capture d’écran 2024-07-30 à 16 41 25" src="https://github.com/user-attachments/assets/1b485af2-9589-4b5e-bfdf-e83796dad930">
 
-6. Create ExternalSecret in gitops manifest file
+7. Create ExternalSecret in gitops manifest file
 <img width="376" alt="Capture d’écran 2024-07-15 à 16 52 42" src="https://github.com/user-attachments/assets/b7b24c8e-77bd-430b-ab16-c5fcb3fa61f2">
+<img width="650" alt="Capture d’écran 2024-07-30 à 16 42 51" src="https://github.com/user-attachments/assets/ba665b53-98d0-41e7-a34c-16cedc88bd4f">
 
-7. Use secret in microservices app
+8. Use secret in microservices app
 <img width="635" alt="Capture d’écran 2024-07-15 à 16 55 33" src="https://github.com/user-attachments/assets/cfad74be-ce27-4a4a-b1f2-ab9e619811b6">
+<img width="1005" alt="Capture d’écran 2024-07-30 à 16 53 29" src="https://github.com/user-attachments/assets/64aac68c-af9f-4b3f-a86e-1076743e9ed0">
+<img width="576" alt="Capture d’écran 2024-07-30 à 16 43 11" src="https://github.com/user-attachments/assets/f1dab5f8-d623-41b3-b936-125627a3a4a1">
 
 ------
 
@@ -440,6 +453,8 @@ however Istio Authorization Policies is the recommended option as it operates on
 - allow sidecar traffic in pods
 <img width="623" alt="Capture d’écran 2024-07-17 à 18 51 19" src="https://github.com/user-attachments/assets/55a67373-387c-4525-bf99-d9ec2fe5d5fe">
 
+<img width="705" alt="Capture d’écran 2024-07-30 à 16 56 07" src="https://github.com/user-attachments/assets/a75a925f-852b-404e-b485-a23be41c54a4">
+
 2. Configure Istio resources in application gitops repo
 
 - Gateway crd
@@ -454,9 +469,14 @@ however Istio Authorization Policies is the recommended option as it operates on
 <img width="378" alt="Capture d’écran 2024-07-22 à 20 31 54" src="https://github.com/user-attachments/assets/bcac9e46-ad08-4f0f-a301-666659a3f842">
 <img width="546" alt="Capture d’écran 2024-07-22 à 20 35 16" src="https://github.com/user-attachments/assets/ad9aca66-a74f-4e69-8e88-32812c4e5ec4">
 
+<img width="886" alt="Capture d’écran 2024-07-30 à 17 01 42" src="https://github.com/user-attachments/assets/f97f9fc3-f8e8-45a0-b215-11f4266d610f">
+
 4. Configure Peer Authentication for mTLS enforcing
 <img width="407" alt="Capture d’écran 2024-07-23 à 18 32 58" src="https://github.com/user-attachments/assets/6b5b6e9f-8380-4824-8bb7-0d0974cad026">
+<img width="638" alt="Capture d’écran 2024-07-30 à 17 05 36" src="https://github.com/user-attachments/assets/ab150bb2-1c57-4bc3-9b62-998d004f011e">
 
 5. Configure Authorization Policies to deny traffic to frontend service + to deny traffic from one namespace to another
 <img width="391" alt="Capture d’écran 2024-07-23 à 19 08 59" src="https://github.com/user-attachments/assets/8b3e43f8-4063-443b-88bf-37509202d5af">
 <img width="545" alt="Capture d’écran 2024-07-23 à 19 21 09" src="https://github.com/user-attachments/assets/b3337e27-ec8a-4326-9901-4a3059011856">
+<img width="583" alt="Capture d’écran 2024-07-30 à 17 11 05" src="https://github.com/user-attachments/assets/de4d7880-0fb7-4127-895c-a1bda98e2e0c">
+<img width="564" alt="Capture d’écran 2024-07-30 à 17 10 58" src="https://github.com/user-attachments/assets/8a50a174-5102-4756-9b9f-9f9867ff6af6">
